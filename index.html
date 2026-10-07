@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b4a3c">
+  <title>Maya Kuthir | মায়া কুঠির</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">❀</span><span><b>Maya Kuthir</b><small>মায়া কুঠির</small></span></a>
+  <div class="search"><input id="searchInput" placeholder="পণ্য খুঁজুন..." aria-label="পণ্য খুঁজুন"><button id="searchBtn">খুঁজুন</button></div>
+  <nav><button class="nav-btn active" data-view="shop">শপ</button><button class="nav-btn" data-view="cart">কার্ট <span id="cartCount">0</span></button><button class="nav-btn" data-view="orders">অর্ডার</button><button class="nav-btn" data-view="admin">অ্যাডমিন</button></nav>
+</header>
+<main>
+  <section id="shopView" class="view">
+    <div class="hero">
+      <div><p class="eyebrow">আপনার পছন্দের অনলাইন শপ</p><h1>সুন্দর পণ্য,<br><em>সুন্দর জীবন</em></h1><p>পছন্দের পণ্য ঘরে বসেই অর্ডার করুন।</p><button class="primary" id="browseBtn">পণ্য দেখুন ↓</button></div>
+      <div class="hero-art" aria-label="সাজানো শপিং ব্যাগের অলংকরণ"><span>MK</span><i>✿</i></div>
+    </div>
+    <div class="section-heading"><div><p class="eyebrow">আমাদের সংগ্রহ</p><h2>জনপ্রিয় পণ্য</h2></div><span id="productTotal" class="muted"></span></div>
+    <div id="categoryRow" class="categories"></div>
+    <div id="productGrid" class="product-grid"></div>
+    <p id="emptyProducts" class="empty hidden">কোনো পণ্য পাওয়া যায়নি।</p>
+  </section>
+
+  <section id="cartView" class="view hidden">
+    <div class="section-heading"><div><p class="eyebrow">আপনার পছন্দ</p><h2>শপিং কার্ট</h2></div></div>
+    <div class="two-col"><div id="cartItems" class="panel"></div><div class="panel summary"><h3>অর্ডারের সারাংশ</h3><div class="sumline"><span>পণ্যের মূল্য</span><b id="subtotal">৳০</b></div><div class="sumline"><span>ডেলিভারি চার্জ</span><b>৳৮০</b></div><div class="sumline total"><span>সর্বমোট</span><b id="grandTotal">৳৮০</b></div><button id="checkoutBtn" class="primary full">অর্ডার করতে এগিয়ে যান</button><p class="muted tiny">পেমেন্ট: ক্যাশ অন ডেলিভারি (COD)</p></div></div>
+  </section>
+
+  <section id="checkoutView" class="view hidden">
+    <button class="back" data-back="cart">← কার্টে ফিরে যান</button><div class="section-heading"><div><p class="eyebrow">শেষ ধাপ</p><h2>ডেলিভারির তথ্য</h2></div></div>
+    <form id="checkoutForm" class="panel form-grid">
+      <label>আপনার নাম *<input name="customer" required placeholder="সম্পূর্ণ নাম"></label>
+      <label>মোবাইল নম্বর *<input name="phone" required inputmode="tel" placeholder="01XXXXXXXXX" pattern="01[0-9]{9}"></label>
+      <label class="wide">সম্পূর্ণ ঠিকানা *<textarea name="address" required rows="3" placeholder="বাড়ি, রোড, এলাকা, জেলা"></textarea></label>
+      <label class="wide">অতিরিক্ত নোট (ঐচ্ছিক)<textarea name="note" rows="2" placeholder="বিশেষ নির্দেশনা"></textarea></label>
+      <div class="wide cod"><b>● ক্যাশ অন ডেলিভারি</b><span>পণ্য হাতে পেয়ে মূল্য পরিশোধ করুন।</span></div>
+      <div class="wide"><button class="primary full" type="submit">অর্ডার নিশ্চিত করুন</button></div>
+    </form>
+  </section>
+
+  <section id="ordersView" class="view hidden">
+    <div class="section-heading"><div><p class="eyebrow">অর্ডারের তথ্য</p><h2>অর্ডার ট্র্যাকিং</h2></div></div>
+    <form id="trackForm" class="panel track-form"><label>অর্ডার আইডি বা মোবাইল নম্বর<input name="query" required placeholder="যেমন MK123456"></label><button class="primary">অর্ডার খুঁজুন</button></form>
+    <div id="trackingResults"></div>
+  </section>
+
+  <section id="adminView" class="view hidden">
+    <div class="admin-head"><div><p class="eyebrow">শুধু ডেমো ব্যবস্থাপনা</p><h2>অ্যাডমিন প্যানেল</h2><p class="muted">এই প্রোটোটাইপে ডেটা এই ব্রাউজারেই থাকে। লাইভ করার আগে নিরাপদ লগইন ও সার্ভার যুক্ত করুন।</p></div><button id="resetDemo" class="outline">ডেমো ডেটা রিসেট</button></div>
+    <div class="stats"><div class="stat"><span>মোট পণ্য</span><b id="statProducts">0</b></div><div class="stat"><span>মোট অর্ডার</span><b id="statOrders">0</b></div><div class="stat"><span>নতুন অর্ডার</span><b id="statNew">0</b></div></div>
+    <div class="admin-grid">
+      <form id="productForm" class="panel">
+        <h3 id="productFormTitle">নতুন পণ্য যোগ করুন</h3><input type="hidden" name="id">
+        <label>পণ্যের নাম *<input name="name" required placeholder="যেমন: লেডিস হ্যান্ডব্যাগ"></label>
+        <div class="form-grid compact"><label>দাম (৳) *<input name="price" type="number" min="1" required></label><label>আগের দাম (৳)<input name="oldPrice" type="number" min="0"></label></div>
+        <label>ক্যাটাগরি<input name="category" placeholder="ব্যাগ / পোশাক / ঘর সাজানো"></label>
+        <label>ছবির লিংক (ঐচ্ছিক)<input name="image" type="url" placeholder="https://..."></label>
+        <label>ছোট বিবরণ<textarea name="description" rows="2"></textarea></label>
+        <div class="button-row"><button class="primary" type="submit">সংরক্ষণ করুন</button><button class="outline" id="cancelEdit" type="button">ফর্ম খালি করুন</button></div>
+      </form>
+      <div class="panel"><h3>পণ্য ব্যবস্থাপনা</h3><div id="adminProducts" class="admin-list"></div></div>
+    </div>
+    <div class="panel orders-panel"><h3>সাম্প্রতিক অর্ডার</h3><div id="adminOrders"></div></div>
+  </section>
+</main>
+<footer><div class="brand"><span class="brand-mark">❀</span><span><b>Maya Kuthir</b><small>মায়া কুঠির</small></span></div><p>সুন্দর পণ্য, সুন্দর জীবন ♥</p><small>© <span id="year"></span> Maya Kuthir</small></footer>
+<div id="toast" class="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
